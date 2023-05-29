@@ -1,7 +1,7 @@
 package com.app.springdemocrud.model;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "employees")
@@ -17,12 +17,12 @@ public class Employee {
     @Column(name = "email_id")
     private String emailId;
 
-    public Employee() {}
-    public Employee(String firstName, String lastName, String emailId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.emailId = emailId;
-    }
+//    public Employee() {}
+//    public Employee(String firstName, String lastName, String emailId) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.emailId = emailId;
+//    }
 
     public long getId() {
         return id;
@@ -56,13 +56,13 @@ public class Employee {
         this.emailId = emailId;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", emailId='" + emailId + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Employee{" +
+//                "id=" + id +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", emailId='" + emailId + '\'' +
+//                '}';
+//    }
 }

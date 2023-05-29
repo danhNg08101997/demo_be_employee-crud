@@ -28,8 +28,7 @@ public class EmployeeController {
     //    }
     public ResponseEntity<?> getAllEmployees() {
         List<Employee> list = employeeRepository.findAll();
-        //        return new ResponseEntity<>(list, HttpStatus.OK);
-        return ResponseEntity.ok(list);
+                return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 //    create employee rest api
@@ -37,16 +36,14 @@ public class EmployeeController {
     public ResponseEntity<?> createEmployee(@RequestBody Employee employee) {
         Employee foundEmployee = employeeRepository.findByEmailId(employee.getEmailId().trim());
         Employee addEmployee = employeeRepository.save(employee);
-        //        return new ResponseEntity<>(addEmployee, HttpStatus.OK);
-        return ResponseEntity.ok(addEmployee);
+                return new ResponseEntity<>(addEmployee, HttpStatus.OK);
     }
 
     // Get employee by id rest api
     @PostMapping("/employees/{id}")
     public ResponseEntity<?> getEmployeeById(@PathVariable Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Employee not exits with id: " + id));
-//        return new ResponseEntity<>(HttpStatus.OK);
-        return ResponseEntity.ok(employee);
+        return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     // Update employee rest api
@@ -58,7 +55,7 @@ public class EmployeeController {
         employee.setEmailId(employeeDetails.getEmailId());
 
         Employee updateEmployee = employeeRepository.save(employee);
-        return ResponseEntity.ok(updateEmployee);
+        return new ResponseEntity<>(updateEmployee, HttpStatus.OK);
     }
 
     // Delete employee rest api
@@ -68,6 +65,6 @@ public class EmployeeController {
         employeeRepository.delete(employee);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
