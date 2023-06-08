@@ -35,8 +35,12 @@ public class EmployeeController {
     @PostMapping("/employees/add")
     public ResponseEntity<?> createEmployee(@RequestBody Employee employee) {
         Employee foundEmployee = employeeRepository.findByEmailId(employee.getEmailId().trim());
-        Employee addEmployee = employeeRepository.save(employee);
-                return new ResponseEntity<>(addEmployee, HttpStatus.OK);
+        Employee addEmployee = null;
+        if (foundEmployee == null) {
+            addEmployee = employeeRepository.save(employee);
+        }
+        return new ResponseEntity<>(addEmployee, HttpStatus.OK);
+
     }
 
     // Get employee by id rest api
